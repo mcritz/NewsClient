@@ -20,18 +20,35 @@ require([
 	Backbone
 ) {
 
-var MainView = Backbone.View.extend({
+var NewsItem = Backbone.Model.extend({
+	title : 'News Flash',
+	content : 'Stay tuned for important news…'
+});
+
+var trumpSucks = new NewsItem({
+	title : 'Oh Boy!',
+	content : 'Trump Chosen as GOP Candidate'
+});
+
+var MainViewClass = Backbone.View.extend({
+	events : {
+		'click' : 'sayHello'
+	},
 	initialize : function() {
 		console.log('hello');
 		this.render();
  	},
  	render : function() {
- 		this.$el.html('Hello World!');
+ 		this.$el.html('<h1>' + this.model.get('title') + '</h1><p>' +  this.model.get('content') + '</p>');
+ 	},
+ 	sayHello : function() {
+ 		alert('hi!');
  	}
 }); // MainView
 
-var hello = new MainView({
-	el : '#main'
+var helloView = new MainViewClass({
+	el : '#main',
+	model : trumpSucks
 }); // mainView
 
 }); // require

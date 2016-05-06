@@ -20,6 +20,16 @@ require([
 	Backbone
 ) {
 
+var NewsItem = Backbone.Model.extend({
+	title : 'News Flash',
+	content : 'Stay tuned for important news…'
+});
+
+var trumpSucks = new NewsItem({
+	title : 'Oh Boy!',
+	content : 'Trump Chosen as GOP Candidate'
+});
+
 var MainViewClass = Backbone.View.extend({
 	events : {
 		'click' : 'sayHello'
@@ -29,7 +39,7 @@ var MainViewClass = Backbone.View.extend({
 		this.render();
  	},
  	render : function() {
- 		this.$el.html('Hello World!');
+ 		this.$el.html('<h1>' + this.model.get('title') + '</h1><p>' +  this.model.get('content') + '</p>');
  	},
  	sayHello : function() {
  		alert('hi!');
@@ -37,7 +47,8 @@ var MainViewClass = Backbone.View.extend({
 }); // MainView
 
 var helloView = new MainViewClass({
-	el : '#main'
+	el : '#main',
+	model : trumpSucks
 }); // mainView
 
 }); // require
