@@ -20,17 +20,23 @@ require([
 	Backbone
 ) {
 
-var MainView = Backbone.View.extend({
+var MainViewClass = Backbone.View.extend({
+	events : {
+		'click' : 'sayHello'
+	},
 	initialize : function() {
 		console.log('hello');
 		this.render();
  	},
  	render : function() {
  		this.$el.html('Hello World!');
+ 	},
+ 	sayHello : function() {
+ 		alert('hi!');
  	}
 }); // MainView
 
-var hello = new MainView({
+var helloView = new MainViewClass({
 	el : '#main'
 }); // mainView
 
